@@ -1,6 +1,11 @@
 from fastapi import APIRouter
 
-import auth
+from . import (
+    auth,
+    product,
+)
 
 
 router = APIRouter()
+router.include_router(auth.router)
+router.include_router(product.router)

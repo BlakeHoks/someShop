@@ -16,6 +16,7 @@ class User(Base):
     email = sa.Column(sa.Text, unique=True)
     username = sa.Column(sa.Text, unique=True)
     #role = sa.Column(sa.Enum(UserRoles))
+    order_id = sa.Column(sa.Integer, sa.ForeignKey('orders.id'))
     password_hash = sa.Column(sa.Text)
 
 #users = sqlalchemy.Table(

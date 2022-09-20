@@ -11,42 +11,42 @@ class CategoryService:
     def __init__(self, session: Session = Depends(get_session)):
         self.session = session
 
-    def get_by_id(self, product_id: int) -> db.Category:
-        product = self._get(product_id)
-        return product
+    def get_by_id(self, category_id: int) -> db.Category:
+        category = self._get(category_id)
+        return category
 
-    def create(self, product_data: models.CategoryCreate) -> db.Category:
-        product = db.Category(
-            **product_data.dict()
+    def create(self, category_data: models.CategoryCreate) -> db.Category:
+        category = db.Category(
+            **category_data.dict()
         )
-        self.session.add(product)
+        self.session.add(category)
         self.session.commit()
-        return product
+        return category
 
-    def update(self, product_id: int, product_data: models.CategoryUpdate) -> db.Category:
-        product = self._get(product_id)
-        for field, value in product_data:
-            setattr(product, field, value)
+    def update(self, category_id: int, category_data: models.CategoryUpdate) -> db.Category:
+        category = self._get(category_id)
+        for field, value in category_data:
+            setattr(category, field, value)
         self.session.commit()
-        return product
+        return category
 
-    def delete(self, product_id: int):
-        product = self._get(product_id)
-        self.session.delete(product)
+    def delete(self, category_id: int):
+        category = self._get(category_id)
+        self.session.delete(category)
         self.session.commit()
 
-    def _get(self, product_id: int) -> Optional[db.Category]:
-        product = (
+    def _get(self, category_id: int) -> Optional[db.Category]:
+        category = (
             self.session
             .query(db.Category)
             .filter(
-                db.Category.id == product_id
+                db.Category.id == category_id
             )
             .first()
         )
-        if not product:
+        if not category:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail='Non-existent id'
             )
-        return product
+        return category
