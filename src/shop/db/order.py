@@ -15,5 +15,5 @@ class Order(Base):
 
     id = sa.Column(sa.Integer, primary_key=True)
     user_id = sa.Column(sa.Integer, sa.ForeignKey('users.id'))
-    price = sa.Column(sa.Float)
+    sum = sa.Column(sa.Float)
     status = sa.Column(sa.Enum(OrderStatus))

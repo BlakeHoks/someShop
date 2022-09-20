@@ -20,6 +20,11 @@ def get_product(product_id: int, product_service: ProductService = Depends()):
     return product_service.get_by_id(product_id)
 
 
+@router.get('/{author}', response_model=List[Product])
+def get_category(author: str, product_service: ProductService = Depends()):
+    return product_service.get_by_author(author)
+
+
 @router.get('/{category_id}', response_model=List[Product])
 def get_category(category_id: int, product_service: ProductService = Depends()):
     return product_service.get_by_category(category_id)

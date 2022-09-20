@@ -14,6 +14,15 @@ class ProductService:
     def get_by_id(self, product_id: int) -> db.Product:
         product = self._get(product_id)
         return product
+    
+    def get_by_author(self, author: str) -> List[db.Product]:
+        products = (
+            self.session
+            .query(db.Product)
+            .filter(db.Product.author == author)
+            .all()
+        )
+        return products
 
     def get_by_category(self, category_id: int) -> List[db.Product]:
         products = (

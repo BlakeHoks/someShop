@@ -15,6 +15,14 @@ class CategoryService:
         category = self._get(category_id)
         return category
 
+    def get_all(self) -> List[db.Category]:
+        categories = (
+            self.session
+            .query(db.Category)
+            .all()
+        )
+        return categories
+
     def create(self, category_data: models.CategoryCreate) -> db.Category:
         category = db.Category(
             **category_data.dict()
