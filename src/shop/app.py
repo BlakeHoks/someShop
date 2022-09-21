@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 
-from db import database
 from .api import router
 
-app = FastAPI()
+app = FastAPI(
+    title='BookShop',
+    description='Книжный интернет-магазин',
+)
+
 app.include_router(router)

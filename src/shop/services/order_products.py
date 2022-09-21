@@ -7,13 +7,17 @@ from ..db.database import get_session
 from .. import models, db
 
 
+# TODO: сделать возможность получить все товары заказа по id заказа
 class OrderProductsService:
     def __init__(self, session: Session = Depends(get_session)):
         self.session = session
 
-    def get_by_id(self, order_id: int) -> db.Order:
+    def get_by_order_id(self, order_id: int) -> db.Order:
         order = self._get(order_id)
         return order
+
+    def get(self, order_id: int) -> db.Order:
+        pass
 
     def create(self, order_id: int, order_product_data: models.OrderProductsCreate) -> db.OrderProducts:
         order_products = db.OrderProducts(
