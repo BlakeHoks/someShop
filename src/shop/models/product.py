@@ -6,7 +6,7 @@ class BaseProduct(BaseModel):
     author: str
     description: str
     image: AnyUrl
-    price: int
+    price: float
     category_id: int
 
 
