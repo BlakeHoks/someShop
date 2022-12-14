@@ -40,7 +40,7 @@ def update_product(product_id: int, product_data: ProductUpdate, product_service
     return product_service.update(product_id, product_data)
 
 
-@router.delete('/{product_id}', response_model=Product, status_code=status.HTTP_204_NO_CONTENT)
-def update_product(product_id: int, product_service: ProductService = Depends()):
+@router.delete('/{product_id}', response_model=Product)
+def delete_product(product_id: int, product_service: ProductService = Depends()):
     product_service.delete(product_id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
